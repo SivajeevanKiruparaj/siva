@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Data</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Stock Data</h1>
+        <form method="post" class="mt-4">
+            <div class="form-group">
+                <label for="stock_symbol">Enter Stock Symbol:</label>
+                <input type="text" class="form-control" id="stock_symbol" name="stock_symbol" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Fetch Data</button>
+        </form>
+        {% if error %}
+            <div class="alert alert-danger mt-3">{{ error }}</div>
+        {% endif %}
+        {% if stock_data %}
+            <h2 class="mt-4">Stock Data for {{ stock_symbol }}</h2>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Open</th>
+                        <th>High</th>
+                        <th>Low</th>
+                        <th>Close</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in stock_data %}
+                        <tr>
+                            <td>{{ row.Date }}</td>
+                            <td>{{ row.Open }}</td>
+                            <td>{{ row.High }}</td>
+                            <td>{{ row.Low }}</td>
+                            <td>{{ row.Close }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-info">Back to Home</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Price Prediction Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Stock Price Prediction Dashboard</h1>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Predict Stock Prices</h5>
+                        <form method="post">
+                            <div class="form-group">
+                                <label for="stock_symbol">Enter Stock Symbol (MSFT, AAPL, NVDA, GOOGL, AMZN):</label>
+                                <input type="text" class="form-control" id="stock_symbol" name="stock_symbol" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="frequency">Select Frequency:</label>
+                                <select class="form-control" id="frequency" name="frequency">
+                                    <option value="daily">Daily</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly">Monthly</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="model">Select Model:</label>
+                                <select class="form-control" id="model" name="model">
+                                    <option value="arima">ARIMA</option>
+                                    <option value="linear_regression">Linear Regression</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                        </form>
+                        {% if error %}
+                            <div class="alert alert-danger mt-3">{{ error }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">View Stock Data</h5>
+                        <p>Fetch and display real-time stock data.</p>
+                        <a href="{{ url_for('data') }}" class="btn btn-info btn-block">Stock Data</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Help</h5>
+                        <p>Learn how to use the application.</p>
+                        <a href="{{ url_for('help') }}" class="btn btn-info btn-block">Help</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
